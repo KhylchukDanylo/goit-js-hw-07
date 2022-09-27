@@ -34,10 +34,12 @@ function openModalImage(elv) {
   instance.show();
 
   if (instance.visible()) {
-    gallery.addEventListener("keydown", (elv) => {
-      if (elv.code === "Escape") {
-        instance.close();
-      }
-    });
+    gallery.addEventListener("keydown", onEsc);
+  }
+  function onEsc(evt) {
+    if (evt.key === "Escape") {
+      instance.close();
+      gallery.removeEventListener("keydown", onEsc);
+    }
   }
 }
